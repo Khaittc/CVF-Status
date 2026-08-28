@@ -78,11 +78,11 @@ export function Matrix() {
         <Table className="h-full">
           <TableHeader className="sticky top-0 z-10 shadow-sm">
             <TableRow>
-              <TableHead className="w-[250px] bg-slate-50">SPEC Domain</TableHead>
-              <TableHead className="w-[180px] bg-slate-50 border-r border-slate-200">SPEC Status</TableHead>
-              <TableHead className="w-[250px] bg-slate-50">UI Module</TableHead>
-              <TableHead className="w-[180px] bg-slate-50 border-r border-slate-200">UI Status</TableHead>
-              <TableHead className="w-[200px] bg-slate-50">Alignment</TableHead>
+              <TableHead className="w-[250px] min-w-[200px] bg-slate-50">SPEC Domain</TableHead>
+              <TableHead className="w-[180px] min-w-[150px] bg-slate-50 border-r border-slate-200">SPEC Status</TableHead>
+              <TableHead className="w-[250px] min-w-[200px] bg-slate-50">UI Module</TableHead>
+              <TableHead className="w-[180px] min-w-[150px] bg-slate-50 border-r border-slate-200">UI Status</TableHead>
+              <TableHead className="w-[200px] min-w-[180px] bg-slate-50">Alignment</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

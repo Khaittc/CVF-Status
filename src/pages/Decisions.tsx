@@ -48,14 +48,14 @@ export function Decisions() {
               <TableRow>
                 <TableHead className="w-[120px]">ID</TableHead>
                 <TableHead className="w-[180px]">Domain</TableHead>
-                <TableHead>Decision</TableHead>
+                <TableHead className="min-w-[300px]">Decision</TableHead>
                 <TableHead className="w-[150px]">Status</TableHead>
               </TableRow>
             ) : (
               <TableRow>
                 <TableHead className="w-[120px]">ID</TableHead>
                 <TableHead className="w-[180px]">Domain</TableHead>
-                <TableHead>Question / Ambiguity</TableHead>
+                <TableHead className="min-w-[300px]">Question / Ambiguity</TableHead>
                 <TableHead className="w-[180px]">Status</TableHead>
                 <TableHead className="w-[200px]">Review Trigger</TableHead>
               </TableRow>
