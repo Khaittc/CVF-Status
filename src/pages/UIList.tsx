@@ -12,7 +12,7 @@ export function UIList() {
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
   const [selectedUI, setSelectedUI] = useState<UIModule | null>(null);
 
-  const statuses = Array.from(new Set(state.uis.map(s => s.status)));
+  const statuses: string[] = Array.from(new Set(state.uis.map(s => s.status)));
 
   const filteredUIs = useMemo(() => {
     return state.uis.filter(ui => {

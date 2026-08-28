@@ -12,7 +12,7 @@ export function SpecList() {
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
   const [selectedSpec, setSelectedSpec] = useState<SpecDomain | null>(null);
 
-  const statuses = Array.from(new Set(state.specs.map(s => s.status)));
+  const statuses: string[] = Array.from(new Set(state.specs.map(s => s.status)));
 
   const filteredSpecs = useMemo(() => {
     return state.specs.filter(spec => {

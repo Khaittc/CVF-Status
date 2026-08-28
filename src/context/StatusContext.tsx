@@ -5,9 +5,9 @@ import { seedData } from '../data';
 interface StatusContextType {
   state: AppState;
   updateState: (newState: Partial<AppState>, logSummary: string, source: string) => void;
-  undoLatest: () => void;
+  undoLatest: () => boolean;
   resetToSeed: () => void;
-  importState: (newState: AppState) => void;
+  importState: (newState: AppState, sourceName?: string) => void;
 }
 
 const STORAGE_KEY = 'cvf_progress_console_state';
@@ -57,20 +57,19 @@ export function StatusProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
-  const undoLatest = () => {
+  const undoLatest = (): boolean => {
     const backup = localStorage.getItem(BACKUP_KEY);
     if (backup) {
       try {
         setState(JSON.parse(backup));
         localStorage.removeItem(BACKUP_KEY);
-        alert('Undo successful. Reverted to previous state.');
+        return true;
       } catch (e) {
         console.error("Failed to parse backup state", e);
-        alert('Undo failed: invalid backup data.');
+        return false;
       }
-    } else {
-      alert('No backup available to undo.');
     }
+    return false;
   };
 
   const resetToSeed = () => {
@@ -78,9 +77,21 @@ export function StatusProvider({ children }: { children: React.ReactNode }) {
     setState(seedData);
   };
 
-  const importState = (newState: AppState) => {
+  const importState = (newState: AppState, sourceName = 'File Import') => {
     localStorage.setItem(BACKUP_KEY, JSON.stringify(state));
-    setState(newState);
+    const timestamp = new Date().toISOString();
+    const newLogEntry = {
+      id: `LOG-${Date.now()}`,
+      timestamp,
+      summary: `Imported full JSON state (${newState.specs?.length || 0} specs, ${newState.uis?.length || 0} UIs)`,
+      source: sourceName,
+      details: 'Full JSON backup restored into system state'
+    };
+    
+    setState({
+      ...newState,
+      changelog: [newLogEntry, ...(newState.changelog || [])]
+    });
   };
 
   if (!isLoaded) return null;

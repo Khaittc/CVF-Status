@@ -3,6 +3,7 @@ import { cn } from '../lib/utils';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   status: string;
+  className?: string;
 }
 
 export function Badge({ status, className, ...props }: BadgeProps) {
